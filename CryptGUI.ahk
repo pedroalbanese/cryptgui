@@ -42,7 +42,7 @@ Encode(A_GuiEvent, GuiCtrlObj, Info, *)
 	oSaved := myGui.Submit("0")
 	Input := oSaved.Input
 	Key := oSaved.Key
-	if StrLen(oSaved.Key) != 16 {
+	if StrLen(oSaved.Key) != 16 && StrLen(oSaved.Key) != 24 && StrLen(oSaved.Key) != 32 {
 		MsgBox "The length of the Key must be 16/24/32 bytes"
 		return
 	}
@@ -61,7 +61,7 @@ Decode(A_GuiEvent, GuiCtrlObj, Info, *)
 	oSaved := myGui.Submit("0")
 	Input := oSaved.Input
 	Key := oSaved.Key
-	if StrLen(oSaved.Key) != 16 {
+	if StrLen(oSaved.Key) != 16 && StrLen(oSaved.Key) != 24 && StrLen(oSaved.Key) != 32 {
 		MsgBox "The length of the Key must be 16/24/32 bytes"
 		return
 	}
