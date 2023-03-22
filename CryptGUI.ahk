@@ -1,4 +1,4 @@
-; ====================================================
+﻿; ====================================================
 ; ================ AHK Encryption GUI ================
 ; ====================================================
 ; AutoHotKey version: 2.0 RC
@@ -42,7 +42,15 @@ Encode(A_GuiEvent, GuiCtrlObj, Info, *)
 	oSaved := myGui.Submit("0")
 	Input := oSaved.Input
 	Key := oSaved.Key
+	if StrLen(oSaved.Key) != 16 {
+		MsgBox "The length of the Key must be 16/24/32 bytes"
+		return
+	}
 	IV := oSaved.IV
+	if StrLen(oSaved.IV) != 16 && StrLen(oSaved.IV) != 0 {
+		MsgBox "The length of the IV must be 16 bytes"
+		return
+	}
 	Result := oSaved.Result
 	ogcEditResult.Value := Encrypt.String("AES", "CBC", Input, Key, IV)
 	return
@@ -53,7 +61,15 @@ Decode(A_GuiEvent, GuiCtrlObj, Info, *)
 	oSaved := myGui.Submit("0")
 	Input := oSaved.Input
 	Key := oSaved.Key
+	if StrLen(oSaved.Key) != 16 {
+		MsgBox "The length of the Key must be 16/24/32 bytes"
+		return
+	}
 	IV := oSaved.IV
+	if StrLen(oSaved.IV) != 16 && StrLen(oSaved.IV) != 0 {
+		MsgBox "The length of the IV must be 16 bytes"
+		return
+	}
 	Result := oSaved.Result
 	ogcEditResult.Value := Decrypt.String("AES", "CBC", Input, Key, IV)
 	return
