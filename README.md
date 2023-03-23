@@ -6,3 +6,5 @@
 #### AES-CBC String Encryption Tool written in Pure AutoHotKey
 
 The Advanced Encryption Standard (AES), also known by its original name Rijndael, is a specification for the encryption of electronic data established by the U.S. National Institute of Standards and Technology (NIST) in 2001.
+
+![CryptGUI](CryptGUI.png "Click to enlarge")
