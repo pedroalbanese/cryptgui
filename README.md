@@ -14,7 +14,7 @@ The Advanced Encryption Standard (AES), also known by its original name Rijndael
 ```php
 Result Decrypted:
 <?php
-	$iv = "0000000000000000";
+	$iv = "";
 	$pass = "abcdef1234567890";
 	$method = 'aes-128-cbc';
 
@@ -23,7 +23,7 @@ Result Decrypted:
 
 Result Encrypted:
 <?php
-	$iv = "0000000000000000";
+	$iv = "";
 	$pass = "abcdef1234567890";
 	$method = 'aes-128-cbc';
 
