@@ -15,16 +15,16 @@ The Advanced Encryption Standard (AES), also known by its original name Rijndael
 Result Decrypted:
 <?php
 	$iv = "0000000000000000";
-	$pass = "1234567890abcdef";
+	$pass = "abcdef1234567890";
 	$method = 'aes-128-cbc';
 
-	print (openssl_decrypt("rNRDKOTTEKj2GPrH7rv4IQ==", $method, $pass, false, $iv));
+	print (openssl_decrypt("GpYTwZzU+Rio2VT09NhIug==", $method, $pass, false, $iv));
 ?>
 
 Result Encrypted:
 <?php
 	$iv = "0000000000000000";
-	$pass = "1234567890abcdef";
+	$pass = "abcdef1234567890";
 	$method = 'aes-128-cbc';
 
 	print (openssl_encrypt("SECRET MESSAGE", $method, $pass, false, $iv));
