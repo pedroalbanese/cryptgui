@@ -18,7 +18,7 @@ Result Decrypted:
 	$pass = "abcdef1234567890";
 	$method = 'aes-128-cbc';
 
-	print (openssl_decrypt("GpYTwZzU+Rio2VT09NhIug==", $method, $pass, false, $iv));
+	print (openssl_decrypt("h1h4aALlAqsoVXd5cIhttA==", $method, $pass, false, $iv));
 ?>
 
 Result Encrypted:
