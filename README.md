@@ -22,7 +22,6 @@ Result Decrypted:
 	print (openssl_decrypt("h1h4aALlAqsoVXd5cIhttA==", $method, $pass, false, $iv));
 ?>
 ```
-
 Result Encrypted:
 ```php
 <?php
