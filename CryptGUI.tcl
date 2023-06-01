@@ -47,13 +47,40 @@ proc encrypt {} {
 	# Perform encryption logic here
 	set pad [expr {16 - ([string length $plaintext] % 16)}]
 	append plaintext [string repeat [format %c $pad] $pad]
-	set encryptedMsg [::aes::aes -dir encrypt -iv $iv -key $key $plaintext]
+
+	if {$iv eq ""} {
+		set encryptedMsg [::aes::aes -dir encrypt -key $key $plaintext]
+	} else {
+		set encryptedMsg [::aes::aes -dir encrypt -iv $iv -key $key $plaintext]
+	}
 
 	# Update ciphertext box with the encrypted result
 	.ciphertextBox delete 1.0 end
 	.ciphertextBox insert 1.0 [binary encode base64 $encryptedMsg]
 }
 
+# Function to perform decryption
+proc decrypt {} {
+	global keyBox ivBox
+	set ciphertext [.ciphertextBox get 1.0 end]
+	set key [.keyBox get]
+	set iv [.ivBox get]
+
+	# Perform decryption logic here
+	if {$iv eq ""} {
+		set decryptedMsg [::aes::aes -dir decrypt -key $key [binary decode base64 $ciphertext]]
+	} else {
+		set decryptedMsg [::aes::aes -dir decrypt -iv $iv -key $key [binary decode base64 $ciphertext]]
+	}
+	set decryptedMsg [removePadding $decryptedMsg]
+	set decryptedMsg [string trim $decryptedMsg]
+
+	# Update plaintext box with the decrypted result
+	.plaintextBox delete 1.0 end
+	.plaintextBox insert 1.0 $decryptedMsg
+}
+
+# PKCS7 Unpadding
 proc removePadding {text} {
 	# Find last byte of padding
 	set lastByte [expr {[scan [string range $text end-1 end] %c]}]
@@ -73,24 +100,6 @@ proc removePadding {text} {
 	}
 
 	return $text
-}
-
-
-# Function to perform decryption
-proc decrypt {} {
-	global keyBox ivBox
-	set ciphertext [.ciphertextBox get 1.0 end]
-	set key [.keyBox get]
-	set iv [.ivBox get]
-
-	# Perform decryption logic here
-	set decryptedMsg [::aes::aes -dir decrypt -iv $iv -key $key [binary decode base64 $ciphertext]]
-	set decryptedMsg [removePadding $decryptedMsg]
-	set decryptedMsg [string trim $decryptedMsg]
-
-	# Update plaintext box with the decrypted result
-	.plaintextBox delete 1.0 end
-	.plaintextBox insert 1.0 $decryptedMsg
 }
 
 # Start the event loop
