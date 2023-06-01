@@ -3,7 +3,7 @@ package require Tk
 package require aes
 
 # Create a new window
-wm title . "AES-128 Encrypton Tool written in TCL/TK"
+wm title . "AES-128 Encryption Tool written in TCL/TK (c) 2023 - ALBANESE Research Lab"
 
 # Create plaintext text box
 text .plaintextBox -width 80 -height 10
